@@ -541,8 +541,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINEYYN -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    25,    25,    26,    30,    31,    32,    37,    43,    47,
-      52
+       0,    25,    25,    26,    30,    31,    32,    39,    45,    53,
+      62
 };
 #endif
 
@@ -1136,73 +1136,76 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 3:
-#line 26 "bison.y"
-                                { printf("Resultado: %d\n", yyvsp[-1]); }
-#line 1143 "y.tab.c"
-    break;
-
   case 5:
 #line 31 "bison.y"
                             {printf("PUSH %d\n",yyvsp[0]);}
-#line 1149 "y.tab.c"
+#line 1143 "y.tab.c"
     break;
 
   case 6:
 #line 32 "bison.y"
                       {
-       /* $$ = $2; */ {printf("PUSH %d\n",yyvsp[-1]);}
-
+       /* $$ = $2; */
+	//if ($2 != 0){
+	//	printf("PUSH %d\n",$2);
+	//}
         }
-#line 1158 "y.tab.c"
+#line 1154 "y.tab.c"
     break;
 
   case 7:
-#line 37 "bison.y"
+#line 39 "bison.y"
                                 {
 	for (int i=0 ; i<yyvsp[0] -1 ; i++ ){
 		yyval *= yyvsp[-2];
 		}
 	printf("Encontrei exponenciacao: %d ^ %d = %d\n",yyvsp[-2],yyvsp[0],yyval);
 	}
-#line 1169 "y.tab.c"
+#line 1165 "y.tab.c"
     break;
 
   case 8:
-#line 43 "bison.y"
+#line 45 "bison.y"
                                 {
-        printf("Encontrei multilicacao: %d * %d = %d\n",yyvsp[-2],yyvsp[0],yyvsp[-2]*yyvsp[0]);
-        yyval = yyvsp[-2] * yyvsp[0];
+        /* printf("Encontrei multilicacao: %d * %d = %d\n",$1,$3,$1*$3);
+        $$ = $1 * $3; */
+	printf("POP A\n");
+	printf("POP B\n");
+	printf("MUL B\n");
+	printf("PUSH A\n");
         }
 #line 1178 "y.tab.c"
     break;
 
   case 9:
-#line 47 "bison.y"
+#line 53 "bison.y"
                                 {
-        printf("Encontrei divisao: %d / %d = %d\n",yyvsp[-2],yyvsp[0],yyvsp[-2]/yyvsp[0]);
-        yyval = yyvsp[-2] / yyvsp[0];
+        /* printf("Encontrei divisao: %d / %d = %d\n",$1,$3,$1/$3);
+        $$ = $1 / $3; */
+	printf("POP A\n");
+	printf("POP B\n");
+	printf("DIV B\n");
+	printf("PUSH A\n");
         }
-#line 1187 "y.tab.c"
+#line 1191 "y.tab.c"
     break;
 
   case 10:
-#line 52 "bison.y"
+#line 62 "bison.y"
                                 {
         /*printf("Encontrei soma: %d + %d = %d\n", $1, $3, $1+$3);
         $$ = $1 + $3;*/
-        printf("POP B\n");
-	printf("POP C\n");
-	printf("ADD B,C\n");
-	printf("MOV A,B\n");
+        printf("POP A\n");
+	printf("POP B\n");
+	printf("ADD A,B\n");
 	printf("PUSH A\n");
 
 	}
-#line 1202 "y.tab.c"
+#line 1205 "y.tab.c"
     break;
 
 
-#line 1206 "y.tab.c"
+#line 1209 "y.tab.c"
 
       default: break;
     }
@@ -1396,7 +1399,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 64 "bison.y"
+#line 73 "bison.y"
 
 
 void yyerror(char *s) {
