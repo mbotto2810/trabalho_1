@@ -541,8 +541,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINEYYN -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    25,    25,    26,    30,    31,    32,    36,    42,    46,
-      51
+       0,    25,    25,    26,    30,    31,    32,    37,    43,    47,
+      52
 };
 #endif
 
@@ -1144,58 +1144,65 @@ yyreduce:
 
   case 5:
 #line 31 "bison.y"
-          { yyval = yyvsp[0]; }
+                            {printf("PUSH %d\n",yyvsp[0]);}
 #line 1149 "y.tab.c"
     break;
 
   case 6:
 #line 32 "bison.y"
                       {
-        yyval = yyvsp[-1];
+       /* $$ = $2; */ {printf("PUSH %d\n",yyvsp[-1]);}
+
         }
-#line 1157 "y.tab.c"
+#line 1158 "y.tab.c"
     break;
 
   case 7:
-#line 36 "bison.y"
+#line 37 "bison.y"
                                 {
 	for (int i=0 ; i<yyvsp[0] -1 ; i++ ){
 		yyval *= yyvsp[-2];
 		}
-	printf("Encontrei exponenciaca: %d ^ %d = %d\n",yyvsp[-2],yyvsp[0],yyvsp[-2]^yyvsp[0]);
+	printf("Encontrei exponenciacao: %d ^ %d = %d\n",yyvsp[-2],yyvsp[0],yyval);
 	}
-#line 1168 "y.tab.c"
+#line 1169 "y.tab.c"
     break;
 
   case 8:
-#line 42 "bison.y"
+#line 43 "bison.y"
                                 {
         printf("Encontrei multilicacao: %d * %d = %d\n",yyvsp[-2],yyvsp[0],yyvsp[-2]*yyvsp[0]);
         yyval = yyvsp[-2] * yyvsp[0];
         }
-#line 1177 "y.tab.c"
+#line 1178 "y.tab.c"
     break;
 
   case 9:
-#line 46 "bison.y"
+#line 47 "bison.y"
                                 {
         printf("Encontrei divisao: %d / %d = %d\n",yyvsp[-2],yyvsp[0],yyvsp[-2]/yyvsp[0]);
         yyval = yyvsp[-2] / yyvsp[0];
         }
-#line 1186 "y.tab.c"
+#line 1187 "y.tab.c"
     break;
 
   case 10:
-#line 51 "bison.y"
+#line 52 "bison.y"
                                 {
-        printf("Encontrei soma: %d + %d = %d\n", yyvsp[-2], yyvsp[0], yyvsp[-2]+yyvsp[0]);
-        yyval = yyvsp[-2] + yyvsp[0];
-        }
-#line 1195 "y.tab.c"
+        /*printf("Encontrei soma: %d + %d = %d\n", $1, $3, $1+$3);
+        $$ = $1 + $3;*/
+        printf("POP B\n");
+	printf("POP C\n");
+	printf("ADD B,C\n");
+	printf("MOV A,B\n");
+	printf("PUSH A\n");
+
+	}
+#line 1202 "y.tab.c"
     break;
 
 
-#line 1199 "y.tab.c"
+#line 1206 "y.tab.c"
 
       default: break;
     }
@@ -1389,7 +1396,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 57 "bison.y"
+#line 64 "bison.y"
 
 
 void yyerror(char *s) {
