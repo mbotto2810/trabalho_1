@@ -37,11 +37,16 @@ EXPRESSAO:
         }
 
     | EXPRESSAO EXP EXPRESSAO   {
-	for (int i=0 ; i<$3 -1 ; i++ ){
-		$$ *= $1;
+	printf("POP C\n");
+	printf("POP A\n");
+	for (int i=0 ; i<$3-1 ; i++ ){
+		//$$ *= $1;
+		printf("MUL %d\n",$1);
 		}
-	printf("Encontrei exponenciacao: %d ^ %d = %d\n",$1,$3,$$);
+	printf("PUSH A\n");
+		//printf("Encontrei exponenciacao: %d ^ %d = %d\n",$1,$3,$$);
 	}
+
     | EXPRESSAO MUL EXPRESSAO   {
         /* printf("Encontrei multilicacao: %d * %d = %d\n",$1,$3,$1*$3);
         $$ = $1 * $3; */
@@ -53,8 +58,8 @@ EXPRESSAO:
     | EXPRESSAO DIV EXPRESSAO   {
         /* printf("Encontrei divisao: %d / %d = %d\n",$1,$3,$1/$3);
         $$ = $1 / $3; */
-	printf("POP A\n");
 	printf("POP B\n");
+	printf("POP A\n");
 	printf("DIV B\n");
 	printf("PUSH A\n");
         }
@@ -68,7 +73,7 @@ EXPRESSAO:
 	printf("PUSH A\n");
 
 	}
-   ;
+    ;
 
 %%
 
@@ -79,5 +84,4 @@ void yyerror(char *s) {
 int main() {
   yyparse();
   return 0;
-
 }

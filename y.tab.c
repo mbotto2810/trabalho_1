@@ -541,8 +541,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINEYYN -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    25,    25,    26,    30,    31,    32,    39,    45,    53,
-      62
+       0,    25,    25,    26,    30,    31,    32,    39,    50,    58,
+      67
 };
 #endif
 
@@ -1156,16 +1156,20 @@ yyreduce:
   case 7:
 #line 39 "bison.y"
                                 {
-	for (int i=0 ; i<yyvsp[0] -1 ; i++ ){
-		yyval *= yyvsp[-2];
+	printf("POP C\n");
+	printf("POP A\n");
+	for (int i=0 ; i<yyvsp[0]-1 ; i++ ){
+		//$$ *= $1;
+		printf("MUL %d\n",yyvsp[-2]);
 		}
-	printf("Encontrei exponenciacao: %d ^ %d = %d\n",yyvsp[-2],yyvsp[0],yyval);
+	printf("PUSH A\n");
+		//printf("Encontrei exponenciacao: %d ^ %d = %d\n",$1,$3,$$);
 	}
-#line 1165 "y.tab.c"
+#line 1169 "y.tab.c"
     break;
 
   case 8:
-#line 45 "bison.y"
+#line 50 "bison.y"
                                 {
         /* printf("Encontrei multilicacao: %d * %d = %d\n",$1,$3,$1*$3);
         $$ = $1 * $3; */
@@ -1174,24 +1178,24 @@ yyreduce:
 	printf("MUL B\n");
 	printf("PUSH A\n");
         }
-#line 1178 "y.tab.c"
+#line 1182 "y.tab.c"
     break;
 
   case 9:
-#line 53 "bison.y"
+#line 58 "bison.y"
                                 {
         /* printf("Encontrei divisao: %d / %d = %d\n",$1,$3,$1/$3);
         $$ = $1 / $3; */
-	printf("POP A\n");
 	printf("POP B\n");
+	printf("POP A\n");
 	printf("DIV B\n");
 	printf("PUSH A\n");
         }
-#line 1191 "y.tab.c"
+#line 1195 "y.tab.c"
     break;
 
   case 10:
-#line 62 "bison.y"
+#line 67 "bison.y"
                                 {
         /*printf("Encontrei soma: %d + %d = %d\n", $1, $3, $1+$3);
         $$ = $1 + $3;*/
@@ -1201,11 +1205,11 @@ yyreduce:
 	printf("PUSH A\n");
 
 	}
-#line 1205 "y.tab.c"
+#line 1209 "y.tab.c"
     break;
 
 
-#line 1209 "y.tab.c"
+#line 1213 "y.tab.c"
 
       default: break;
     }
@@ -1399,7 +1403,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 73 "bison.y"
+#line 78 "bison.y"
 
 
 void yyerror(char *s) {
@@ -1409,5 +1413,4 @@ void yyerror(char *s) {
 int main() {
   yyparse();
   return 0;
-
 }
