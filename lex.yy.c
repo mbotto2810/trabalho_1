@@ -444,7 +444,7 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "flex.l"
-#line 3 "flex.l"
+#line 2 "flex.l"
 #include <stdlib.h>
 void yyerror(char *);
 
@@ -667,7 +667,7 @@ YY_DECL
 		}
 
 	{
-#line 10 "flex.l"
+#line 9 "flex.l"
 
 
 #line 673 "lex.yy.c"
@@ -729,7 +729,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 12 "flex.l"
+#line 11 "flex.l"
 {
           yylval = atoi(yytext);
           return INT;
@@ -737,42 +737,42 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "flex.l"
+#line 15 "flex.l"
 {
           return PE;
         }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 21 "flex.l"
+#line 18 "flex.l"
 {
           return PD;
         }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 25 "flex.l"
+#line 21 "flex.l"
 {
           return SOMA;
         }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "flex.l"
+#line 24 "flex.l"
 {
           return MUL;
         }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 33 "flex.l"
+#line 27 "flex.l"
 {
 	  return EXP;
 	}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 37 "flex.l"
+#line 30 "flex.l"
 {
           return DIV;
         }
@@ -780,24 +780,24 @@ YY_RULE_SETUP
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 41 "flex.l"
+#line 33 "flex.l"
 {
          return EOL;
        }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 45 "flex.l"
+#line 36 "flex.l"
 ;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 47 "flex.l"
+#line 38 "flex.l"
 {yyerror("Token nao reconhecido!\n");}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 49 "flex.l"
+#line 40 "flex.l"
 ECHO;
 	YY_BREAK
 #line 803 "lex.yy.c"
@@ -1805,7 +1805,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 49 "flex.l"
+#line 40 "flex.l"
 
 
 int yywrap() {

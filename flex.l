@@ -1,4 +1,3 @@
-
 %{
 #include <stdlib.h>
 void yyerror(char *);
@@ -13,35 +12,27 @@ void yyerror(char *);
           yylval = atoi(yytext);
           return INT;
         }
-
 [(]     {
           return PE;
         }
-
 [)]     {
           return PD;
         }
-
 [+]     {
           return SOMA;
         }
-
 [*]     {
           return MUL;
         }
-
 [\^]	{
 	  return EXP;
 	}
-
 [/]     {
           return DIV;
         }
-
 \n      {
          return EOL;
        }
-
 [ \t]+ ;
 
 .     {yyerror("Token nao reconhecido!\n");}

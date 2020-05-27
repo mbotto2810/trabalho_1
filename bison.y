@@ -23,55 +23,47 @@ int yylex(void);
 %%
 
 PROGRAMA:
-        |PROGRAMA EXPRESSAO EOL // { printf("Resultado: %d\n", $2); }
+        |PROGRAMA EXPRESSAO EOL
         ;
 
 
 EXPRESSAO:
-    | INT /*{ $$ = $1; } */ {printf("PUSH %d\n",$1);}
-    | PE EXPRESSAO PD {
-       /* $$ = $2; */
-	//if ($2 != 0){
-	//	printf("PUSH %d\n",$2);
-	//}
-        }
+    //A pilha eh usaada para salvar variaveis
+    | INT  {printf("PUSH %d\n",$1);}
 
+    //Aqui os parenteses sao de maxima precedencia,certificando que a expressao seja resolvida de forma correta. Eu nao preciso dar nenhum printf aqui
+    | PE EXPRESSAO PD {}
+
+    //Uma solucao com for para a exponenciacao. Dei POP no C para ignorar o valor do expoente, desnecessario na minha solucao.
+    //De resto o registrador C jnao e usado no meu codigo
     | EXPRESSAO EXP EXPRESSAO   {
 	printf("POP C\n");
 	printf("POP A\n");
-	for (int i=0 ; i<$3-1 ; i++ ){
-		//$$ *= $1;
+	for (int i=0; i<$3-1; i++) {
 		printf("MUL %d\n",$1);
-		}
+	}
 	printf("PUSH A\n");
-		//printf("Encontrei exponenciacao: %d ^ %d = %d\n",$1,$3,$$);
 	}
 
+    //Aqui eu uso pilha para implementar as operacoes abaixo sempre dando PUSH para salvar o resultado na mesma.
+    //A precendencia das operacoes segue a seguinte ordem: MUL,DIV,SOMA
     | EXPRESSAO MUL EXPRESSAO   {
-        /* printf("Encontrei multilicacao: %d * %d = %d\n",$1,$3,$1*$3);
-        $$ = $1 * $3; */
 	printf("POP A\n");
 	printf("POP B\n");
 	printf("MUL B\n");
 	printf("PUSH A\n");
         }
     | EXPRESSAO DIV EXPRESSAO   {
-        /* printf("Encontrei divisao: %d / %d = %d\n",$1,$3,$1/$3);
-        $$ = $1 / $3; */
 	printf("POP B\n");
 	printf("POP A\n");
 	printf("DIV B\n");
 	printf("PUSH A\n");
         }
-
     | EXPRESSAO SOMA EXPRESSAO  {
-        /*printf("Encontrei soma: %d + %d = %d\n", $1, $3, $1+$3);
-        $$ = $1 + $3;*/
         printf("POP A\n");
 	printf("POP B\n");
 	printf("ADD A,B\n");
 	printf("PUSH A\n");
-
 	}
     ;
 
