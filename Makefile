@@ -7,7 +7,7 @@
 #Para compilar com -ll use make ll
 
 all: lex.yy.c y.tab.c
-	gcc -omain lex.yy.c y.tab.c
+	gcc -omain lex.yy.c y.tab.c -lfl
 
 ll: lex.yy.c y.tab.c
 	gcc -omain lex.yy.c y.tab.c -ll

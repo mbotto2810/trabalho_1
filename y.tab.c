@@ -541,8 +541,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINEYYN -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    25,    25,    26,    30,    32,    35,    39,    50,    56,
-      62
+       0,    25,    25,    26,    30,    32,    35,    40,    59,    65,
+      71
 };
 #endif
 
@@ -1136,66 +1136,80 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 3:
+#line 26 "bison.y"
+                                {}
+#line 1143 "y.tab.c"
+    break;
+
   case 5:
 #line 32 "bison.y"
            {printf("PUSH %d\n",yyvsp[0]);}
-#line 1143 "y.tab.c"
+#line 1149 "y.tab.c"
     break;
 
   case 6:
 #line 35 "bison.y"
                       {}
-#line 1149 "y.tab.c"
+#line 1155 "y.tab.c"
     break;
 
   case 7:
-#line 39 "bison.y"
+#line 40 "bison.y"
                                 {
-	printf("POP C\n");
-	printf("POP A\n");
-	for (int i=0; i<yyvsp[0]-1; i++) {
-		printf("MUL %d\n",yyvsp[-2]);
+	if (yyvsp[0] != 0){
+		printf("POP C\n");
+		printf("POP A\n");
+		for (int i=0; i<yyvsp[0]-1; i++) {
+			printf("MUL %d\n",yyvsp[-2]);
+		}
+		printf("PUSH A\n");
+
+	} else {
+		printf("POP C\n");
+		printf("POP A\n");
+		printf("MOV A,1\n");
+		printf("PUSH A\n");
 	}
-	printf("PUSH A\n");
 	}
-#line 1162 "y.tab.c"
+#line 1176 "y.tab.c"
     break;
 
   case 8:
-#line 50 "bison.y"
+#line 59 "bison.y"
                                 {
 	printf("POP A\n");
 	printf("POP B\n");
 	printf("MUL B\n");
 	printf("PUSH A\n");
         }
-#line 1173 "y.tab.c"
+#line 1187 "y.tab.c"
     break;
 
   case 9:
-#line 56 "bison.y"
+#line 65 "bison.y"
                                 {
 	printf("POP B\n");
 	printf("POP A\n");
 	printf("DIV B\n");
 	printf("PUSH A\n");
         }
-#line 1184 "y.tab.c"
+#line 1198 "y.tab.c"
     break;
 
   case 10:
-#line 62 "bison.y"
+#line 71 "bison.y"
                                 {
         printf("POP A\n");
 	printf("POP B\n");
 	printf("ADD A,B\n");
 	printf("PUSH A\n");
 	}
-#line 1195 "y.tab.c"
+#line 1209 "y.tab.c"
     break;
 
 
-#line 1199 "y.tab.c"
+#line 1213 "y.tab.c"
 
       default: break;
     }
@@ -1389,7 +1403,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 70 "bison.y"
+#line 79 "bison.y"
 
 
 void yyerror(char *s) {
