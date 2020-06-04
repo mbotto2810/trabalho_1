@@ -12,3 +12,8 @@ y.tab.c:bison.y
 
 clean:
 	rm y.tab.c lex.yy.c y.tab.h main
+
+git:
+	git add *
+	git commit -am 'auto'
+	git push
